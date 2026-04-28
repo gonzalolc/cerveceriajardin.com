@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cervecería Jardín — CDMX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blanco:        #fdfaf5;
+    --crema:         #f5efe3;
+    --crema-media:   #ede3d0;
+    --crema-oscura:  #d9cdb8;
+    --verde-hoja:    #3a6b3a;
+    --verde-medio:   #4f8a4f;
+    --verde-claro:   #72aa5c;
+    --verde-menta:   #a8c98a;
+    --verde-suave:   #daeaca;
+    --salmon:        #e8a090;
+    --rosa-polvo:    #e8c4b8;
+    --rosa-claro:    #f5dfd8;
+    --tierra:        #8c6848;
+    --tierra-claro:  #c4a07c;
+    --texto-oscuro:  #2a2218;
+    --texto-medio:   #4a3e30;
+    --texto-suave:   #7a6e60;
+    --borde:         rgba(90, 130, 80, 0.2);
+    --borde-fuerte:  rgba(90, 130, 80, 0.4);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--blanco);
+    color: var(--texto-oscuro);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(253, 250, 245, 0.93);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--borde);
+    transition: padding 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'IM Fell English', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--verde-hoja);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--texto-medio);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--verde-hoja); }
+
+  /* HERO */
+  #inicio {
+    min-height: 100vh;
+    background-color: var(--crema);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8rem 2rem 5rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #inicio::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 15% 25%, rgba(114,170,92,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 50% at 85% 75%, rgba(232,160,144,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 60% 10%, rgba(168,201,138,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* flores esquinas */
+  .hero-flor { position: absolute; pointer-events: none; opacity: 0.22; }
+  .hero-flor-tl { top: 6%; left: 1%; width: clamp(130px,13vw,190px); transform: rotate(-12deg); }
+  .hero-flor-tr { top: 8%; right: 4%; width: clamp(80px,8vw,115px); transform: rotate(28deg); }
+  .hero-flor-br { bottom: 4%; right: 2%; width: clamp(110px,11vw,165px); transform: rotate(18deg) scaleX(-1); }
+
+  .hero-logo-container {
+    position: relative; z-index: 1;
+    width: 185px; height: 185px;
+    margin-bottom: 2rem;
+    animation: float 7s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+
+  .hero-logo-container img {
+    width: 100%; height: 100%; object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(28%) sepia(30%) saturate(700%) hue-rotate(80deg) brightness(0.75);
+  }
+
+  .hero-tagline {
+    position: relative; z-index: 1;
+    font-family: 'IM Fell English', serif;
+    font-size: clamp(0.85rem,1.8vw,1.1rem);
+    font-style: italic;
+    color: var(--verde-medio);
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+
+  .hero-title {
+    position: relative; z-index: 1;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem,9vw,8rem);
+    font-weight: 900;
+    line-height: 0.92;
+    color: var(--texto-oscuro);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+
+  .hero-title span { color: var(--verde-hoja); }
+
+  .hero-subtitle {
+    position: relative; z-index: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem,1.8vw,1.2rem);
+    font-weight: 300;
+    color: var(--texto-suave);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.85;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+
+  .hero-ctas {
+    position: relative; z-index: 1;
+    display: flex; gap: 1.2rem;
+    justify-content: center; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+
+  .btn-primary {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    padding: 0.9rem 2.3rem;
+    background: var(--verde-hoja); color: var(--blanco);
+    border: 1px solid var(--verde-hoja);
+    text-decoration: none; transition: all 0.3s ease;
+  }
+  .btn-primary:hover { background: var(--verde-medio); border-color: var(--verde-medio); }
+
+  .btn-outline {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    padding: 0.9rem 2.3rem;
+    background: transparent; color: var(--tierra);
+    border: 1px solid var(--tierra-claro);
+    text-decoration: none; transition: all 0.3s ease;
+  }
+  .btn-outline:hover { background: var(--rosa-claro); border-color: var(--salmon); }
+
+  .hero-scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    opacity: 0.35;
+  }
+  .hero-scroll-hint span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--texto-suave);
+  }
+  .scroll-line {
+    width: 1px; height: 38px;
+    background: linear-gradient(to bottom, var(--verde-medio), transparent);
+    animation: scrollDown 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scrollDown {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* QUOTE */
+  .comunidad-quote {
+    background: var(--verde-suave);
+    padding: 6rem 2rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .comunidad-quote::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(232,160,144,0.14) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .comunidad-quote blockquote {
+    max-width: 780px; margin: 0 auto;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem,3vw,2.4rem);
+    font-weight: 400; font-style: italic;
+    line-height: 1.5; color: var(--verde-hoja);
+    position: relative; padding: 1rem 0;
+  }
+  .comunidad-quote blockquote::before {
+    content: '"'; position: absolute; top: -2rem; left: -1.5rem;
+    font-size: 9rem; color: rgba(58,107,58,0.08);
+    font-family: 'Playfair Display', serif; line-height: 1;
+  }
+  .comunidad-quote blockquote em { color: var(--tierra); font-style: normal; }
+  .comunidad-quote cite {
+    display: block; margin-top: 1.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--verde-medio); font-style: normal;
+  }
+
+  /* SECCIONES */
+  section { position: relative; z-index: 1; }
+
+  .section-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem; font-weight: 300;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--verde-medio); margin-bottom: 0.9rem; display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.3rem,5vw,4rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--texto-oscuro); margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--verde-hoja); }
+
+  /* CERVEZAS */
+  #cervezas {
+    padding: 7rem 2rem;
+    background: var(--blanco);
+    position: relative; overflow: hidden;
+  }
+  #cervezas::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--borde), transparent);
+  }
+
+  .cervezas-header {
+    max-width: 640px; margin: 0 auto 4.5rem; text-align: center;
+  }
+  .cervezas-header p {
+    font-size: 1.1rem; font-weight: 300;
+    color: var(--texto-suave); font-style: italic;
+  }
+
+  .cervezas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px,1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+
+  .cerveza-card {
+    padding: 2.2rem 2rem;
+    background: var(--crema);
+    border: 1px solid var(--borde);
+    transition: all 0.35s ease;
+    position: relative; overflow: hidden;
+  }
+  .cerveza-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 3px; height: 0;
+    background: var(--verde-hoja);
+    transition: height 0.4s ease;
+  }
+  .cerveza-card:hover { box-shadow: 0 8px 30px rgba(58,107,58,0.08); transform: translateY(-3px); }
+  .cerveza-card:hover::before { height: 100%; }
+  .cerveza-card.destacada { border-color: rgba(196,160,124,0.35); }
+  .cerveza-card.destacada::before { background: var(--tierra-claro); }
+
+  .cerveza-tipo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--verde-claro); margin-bottom: 0.7rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .cerveza-tipo::after {
+    content: ''; display: block;
+    height: 1px; width: 28px; background: var(--verde-menta);
+  }
+  .cerveza-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--texto-oscuro); line-height: 1.1; margin-bottom: 0.9rem;
+  }
+  .cerveza-descripcion {
+    font-size: 0.95rem; font-weight: 300;
+    color: var(--texto-suave); line-height: 1.75; font-style: italic;
+  }
+  .cerveza-premio {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.2rem; padding: 0.35rem 0.9rem;
+    background: rgba(196,160,124,0.1);
+    border: 1px solid rgba(196,160,124,0.35);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--tierra);
+  }
+  .medalla { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
+  .medalla.oro   { background: #D4AF37; }
+  .medalla.plata { background: #A0A0A0; }
+  .medalla.pronto { background: var(--verde-menta); }
+
+  .temporada-titulo {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-weight: 300; font-style: italic;
+    color: var(--texto-suave); letter-spacing: 0.1em;
+    margin: 3.5rem auto 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    max-width: 500px; justify-content: center;
+  }
+  .temporada-titulo::before, .temporada-titulo::after {
+    content: ''; display: block; height: 1px; flex: 1;
+    background: linear-gradient(to right, transparent, var(--crema-oscura));
+  }
+  .temporada-titulo::after { background: linear-gradient(to left, transparent, var(--crema-oscura)); }
+
+  .temporada-grid {
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+    max-width: 1100px; margin: 0 auto; justify-content: center;
+  }
+  .cerveza-temporada-pill {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--texto-suave); padding: 0.45rem 1.2rem;
+    border: 1px solid var(--crema-oscura); background: transparent;
+    transition: all 0.3s;
+  }
+  .cerveza-temporada-pill:hover {
+    color: var(--verde-hoja); border-color: var(--verde-menta);
+    background: var(--verde-suave);
+  }
+
+  /* HERMANAS */
+  #hermanas {
+    padding: 7rem 2rem;
+    background: var(--crema);
+    position: relative; overflow: hidden;
+  }
+  #hermanas::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 95% 20%, rgba(232,160,144,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 50% at 5% 80%, rgba(114,170,92,0.07) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .hermanas-intro { max-width: 650px; margin: 0 auto 5rem; text-align: center; }
+  .hermanas-intro p { font-size: 1.1rem; font-weight: 300; color: var(--texto-suave); line-height: 1.85; }
+
+  .hermanas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px,1fr));
+    gap: 2.5rem; max-width: 860px; margin: 0 auto;
+  }
+
+  .hermana-card {
+    padding: 2.8rem 2.5rem;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    position: relative; transition: all 0.35s ease;
+  }
+  .hermana-card:hover {
+    border-color: var(--borde-fuerte);
+    box-shadow: 0 10px 35px rgba(58,107,58,0.07);
+    transform: translateY(-4px);
+  }
+  .hermana-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 2rem; right: 2rem; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--verde-menta), transparent);
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .hermana-card:hover::after { opacity: 1; }
+
+  .hermana-logo-area { height: 72px; display: flex; align-items: center; margin-bottom: 1.6rem; }
+
+  .logo-bravada {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.7rem; font-weight: 900; font-style: italic;
+    color: var(--texto-oscuro); letter-spacing: -0.02em; line-height: 1;
+  }
+  .logo-mantide {
+    font-family: 'IM Fell English', serif;
+    font-size: 2.3rem; font-weight: 400;
+    color: var(--texto-oscuro); letter-spacing: 0.06em; line-height: 1;
+  }
+
+  .hermana-subtitulo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--verde-medio); margin-bottom: 0.9rem; display: block;
+  }
+  .hermana-descripcion {
+    font-size: 1rem; font-weight: 300;
+    color: var(--texto-suave); line-height: 1.8; font-style: italic;
+  }
+  .hermana-animal {
+    margin-top: 1.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--tierra-claro);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hermana-animal::before {
+    content: ''; display: block;
+    width: 18px; height: 1px; background: var(--crema-oscura);
+  }
+
+  /* PUNTO DE VENTA */
+  #punto-de-venta { padding: 7rem 2rem; background: var(--blanco); }
+
+  .pdv-container {
+    max-width: 960px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+
+  .pdv-info-header { margin-bottom: 2.5rem; }
+  .pdv-info-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem,4vw,3.2rem);
+    font-weight: 700; line-height: 1.1;
+    color: var(--texto-oscuro); margin-bottom: 0.8rem;
+  }
+  .pdv-info-header h2 em { display: block; font-style: italic; color: var(--verde-hoja); }
+
+  .pdv-sucursal-tag {
+    display: inline-block; margin-bottom: 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--tierra); padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(196,160,124,0.4);
+    background: rgba(196,160,124,0.07);
+  }
+
+  .pdv-dato { margin-bottom: 1.5rem; }
+  .pdv-dato-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--verde-medio); display: block; margin-bottom: 0.3rem;
+  }
+  .pdv-dato-valor { font-size: 1rem; font-weight: 300; color: var(--texto-medio); }
+
+  .pdv-maps-link {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--verde-hoja); text-decoration: none;
+    border-bottom: 1px solid var(--verde-menta);
+    padding-bottom: 0.1rem; margin-top: 0.3rem;
+    transition: all 0.25s;
+  }
+  .pdv-maps-link:hover { color: var(--tierra); border-color: var(--tierra-claro); }
+
+  .pdv-horarios { margin-top: 1.8rem; border: 1px solid var(--borde); background: var(--crema); }
+
+  .pdv-horarios-titulo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--verde-medio); padding: 0.7rem 1.2rem;
+    border-bottom: 1px solid var(--borde);
+    background: var(--verde-suave);
+  }
+
+  .pdv-horario-row {
+    display: flex; justify-content: space-between;
+    padding: 0.45rem 1.2rem;
+    border-bottom: 1px solid rgba(90,130,80,0.08);
+    font-size: 0.88rem; font-weight: 300; color: var(--texto-medio);
+  }
+  .pdv-horario-row:last-child { border-bottom: none; }
+  .pdv-horario-row .dia {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--texto-suave); min-width: 80px;
+  }
+  .pdv-horario-row.cerrado .dia,
+  .pdv-horario-row.cerrado .hora { color: var(--crema-oscura); }
+
+  .pdv-nota-barra {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem; letter-spacing: 0.1em; font-style: italic;
+    color: var(--verde-medio); padding: 0.5rem 1.2rem;
+    border-top: 1px solid var(--borde);
+    background: rgba(168,201,138,0.08);
+  }
+
+  .pdv-right { display: flex; flex-direction: column; gap: 2rem; }
+
+  .pdv-mapa-frame {
+    border: 1px solid var(--borde);
+    overflow: hidden; height: 220px;
+  }
+  .pdv-mapa-frame iframe {
+    width: 100%; height: 100%; border: 0;
+    filter: saturate(0.65); transition: filter 0.3s;
+  }
+  .pdv-mapa-frame:hover iframe { filter: saturate(1); }
+
+  /* Teaser 2da sucursal */
+  .pdv-teaser {
+    padding: 2.2rem;
+    background: var(--crema);
+    border: 1.5px dashed rgba(90,130,80,0.3);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .pdv-teaser::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(168,201,138,0.1) 0%, transparent 70%);
+  }
+  .pdv-teaser-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+  .pdv-teaser h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 700; font-style: italic;
+    color: var(--verde-hoja); margin-bottom: 0.6rem;
+    position: relative;
+  }
+  .pdv-teaser p {
+    font-size: 0.92rem; font-weight: 300;
+    color: var(--texto-suave); font-style: italic;
+    line-height: 1.7; position: relative;
+  }
+  .pdv-teaser-badge {
+    display: inline-block; margin-top: 1rem; position: relative;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--tierra); padding: 0.3rem 0.9rem;
+    border: 1px solid rgba(196,160,124,0.4);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+  /* CONTACTO */
+  #contacto {
+    padding: 7rem 2rem; background: var(--crema);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  #contacto::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 10% 30%, rgba(168,201,138,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 60% at 90% 70%, rgba(232,160,144,0.1) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .contacto-container { max-width: 580px; margin: 0 auto; position: relative; }
+
+  .contacto-grande {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem,4.5vw,3.5rem);
+    font-weight: 700; line-height: 1.1;
+    color: var(--texto-oscuro); margin-bottom: 1rem;
+  }
+  .contacto-grande em { font-style: italic; color: var(--verde-hoja); }
+
+  .contacto-bajada {
+    font-size: 1.05rem; font-weight: 300;
+    color: var(--texto-suave); margin-bottom: 2.5rem; font-style: italic;
+  }
+
+  .contacto-email {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.88rem; letter-spacing: 0.14em;
+    color: var(--verde-hoja); text-decoration: none;
+    border-bottom: 1px solid var(--verde-menta);
+    padding-bottom: 0.2rem; transition: all 0.3s; margin-bottom: 3rem;
+  }
+  .contacto-email:hover { color: var(--tierra); border-color: var(--tierra-claro); }
+
+  .linea-floral {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 0 auto 2rem; max-width: 280px; justify-content: center;
+  }
+  .linea-floral::before, .linea-floral::after {
+    content: ''; display: block; height: 1px; flex: 1;
+    background: var(--crema-oscura);
+  }
+  .flor-icon { color: var(--salmon); font-size: 1rem; opacity: 0.7; }
+
+  .redes { display: flex; gap: 2rem; justify-content: center; margin-top: 1.5rem; }
+  .red-link {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--texto-suave); text-decoration: none;
+    border-bottom: 1px solid transparent; transition: all 0.3s;
+  }
+  .red-link:hover { color: var(--verde-hoja); border-color: var(--verde-menta); }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem; text-align: center;
+    border-top: 1px solid var(--borde); background: var(--blanco);
+  }
+  .footer-logo {
+    font-family: 'IM Fell English', serif;
+    font-size: 1.1rem; color: var(--verde-hoja);
+    letter-spacing: 0.12em; display: block; margin-bottom: 0.7rem;
+  }
+  .footer-text {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--crema-oscura);
+  }
+
+  /* Ornamento botánico */
+  .botanical-ornament {
+    position: absolute; pointer-events: none; user-select: none;
+  }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* HAMBURGER */
+  .menu-toggle {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px; background: none; border: none;
+  }
+  .menu-toggle span {
+    display: block; width: 24px; height: 1px;
+    background: var(--texto-oscuro); transition: all 0.3s;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links {
+      display: none; position: fixed; inset: 0;
+      background: rgba(253,250,245,0.97);
+      flex-direction: column; align-items: center;
+      justify-content: center; gap: 2.5rem; z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { font-size: 1rem; color: var(--texto-oscuro); }
+    .menu-toggle { display: flex; z-index: 101; position: relative; }
+    .pdv-container { grid-template-columns: 1fr; gap: 3rem; }
+    .hermanas-grid { grid-template-columns: 1fr; }
+    .hero-flor { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">Cervecería Jardín</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio"         onclick="closeMenu()">Inicio</a></li>
+    <li><a href="#cervezas"       onclick="closeMenu()">Cervezas</a></li>
+    <li><a href="#hermanas"       onclick="closeMenu()">Cervecerías Hermanas</a></li>
+    <li><a href="#punto-de-venta" onclick="closeMenu()">Punto de Venta</a></li>
+    <li><a href="#contacto"       onclick="closeMenu()">Contacto</a></li>
+  </ul>
+  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+
+  <!-- Flor esquina sup izq -->
+  <svg class="hero-flor hero-flor-tl" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="100" cy="42" rx="17" ry="36" fill="#e8a090" transform="rotate(0 100 110)"/>
+    <ellipse cx="100" cy="42" rx="17" ry="36" fill="#e8c4b8" transform="rotate(45 100 110)"/>
+    <ellipse cx="100" cy="42" rx="17" ry="36" fill="#e8a090" transform="rotate(90 100 110)"/>
+    <ellipse cx="100" cy="42" rx="17" ry="36" fill="#e8c4b8" transform="rotate(135 100 110)"/>
+    <ellipse cx="100" cy="42" rx="17" ry="36" fill="#e8a090" transform="rotate(180 100 110)"/>
+    <ellipse cx="100" cy="42" rx="17" ry="36" fill="#e8c4b8" transform="rotate(225 100 110)"/>
+    <ellipse cx="100" cy="42" rx="17" ry="36" fill="#e8a090" transform="rotate(270 100 110)"/>
+    <ellipse cx="100" cy="42" rx="17" ry="36" fill="#e8c4b8" transform="rotate(315 100 110)"/>
+    <circle cx="100" cy="110" r="15" fill="#f5dfd8"/>
+    <line x1="100" y1="165" x2="88" y2="240" stroke="#72aa5c" stroke-width="2"/>
+    <ellipse cx="80" cy="210" rx="14" ry="7" fill="#a8c98a" transform="rotate(-28 80 210)"/>
+    <ellipse cx="94" cy="195" rx="11" ry="5.5" fill="#72aa5c" transform="rotate(15 94 195)"/>
+  </svg>
+
+  <!-- Flor esquina sup der -->
+  <svg class="hero-flor hero-flor-tr" viewBox="0 0 150 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="75" cy="28" rx="12" ry="25" fill="#a8c98a" transform="rotate(0 75 75)"/>
+    <ellipse cx="75" cy="28" rx="12" ry="25" fill="#72aa5c" transform="rotate(60 75 75)"/>
+    <ellipse cx="75" cy="28" rx="12" ry="25" fill="#a8c98a" transform="rotate(120 75 75)"/>
+    <ellipse cx="75" cy="28" rx="12" ry="25" fill="#72aa5c" transform="rotate(180 75 75)"/>
+    <ellipse cx="75" cy="28" rx="12" ry="25" fill="#a8c98a" transform="rotate(240 75 75)"/>
+    <ellipse cx="75" cy="28" rx="12" ry="25" fill="#72aa5c" transform="rotate(300 75 75)"/>
+    <circle cx="75" cy="75" r="11" fill="#f5efe3"/>
+  </svg>
+
+  <!-- Flor esquina inf der -->
+  <svg class="hero-flor hero-flor-br" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="100" cy="38" rx="15" ry="32" fill="#e8a090" transform="rotate(0 100 105)"/>
+    <ellipse cx="100" cy="38" rx="15" ry="32" fill="#c4a07c" transform="rotate(72 100 105)"/>
+    <ellipse cx="100" cy="38" rx="15" ry="32" fill="#e8a090" transform="rotate(144 100 105)"/>
+    <ellipse cx="100" cy="38" rx="15" ry="32" fill="#c4a07c" transform="rotate(216 100 105)"/>
+    <ellipse cx="100" cy="38" rx="15" ry="32" fill="#e8a090" transform="rotate(288 100 105)"/>
+    <circle cx="100" cy="105" r="13" fill="#f5dfd8"/>
+    <line x1="100" y1="152" x2="112" y2="220" stroke="#72aa5c" stroke-width="1.5"/>
+    <ellipse cx="120" cy="192" rx="12" ry="6" fill="#a8c98a" transform="rotate(22 120 192)"/>
+  </svg>
+
+  <div class="hero-logo-container">
+    <img src="Cerveceri_a_Jardi_n_Negro_contorno.png" alt="Logo Cervecería Jardín">
+  </div>
+
+  <p class="hero-tagline">CD · MX — Fábrica de Cerveza Artesanal</p>
+
+  <h1 class="hero-title">Cervecería<br><span>Jardín</span></h1>
+
+  <p class="hero-subtitle">
+    Donde la naturaleza y el oficio cervecero se encuentran. Una comunidad construida alrededor de la calidad extraordinaria y el amor por la buena cerveza.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#cervezas" class="btn-primary">Nuestras Cervezas</a>
+    <a href="#punto-de-venta" class="btn-outline">Visítanos</a>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Descubre</span>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="comunidad-quote reveal">
+  <blockquote>
+    Cerveza de <em>calidad extraordinaria</em>, hecha con comunidad. Nuestros clientes no son simples visitantes — son parte de algo más grande.
+  </blockquote>
+  <cite>— Cervecería Jardín, CDMX</cite>
+</div>
+
+<!-- CERVEZAS -->
+<section id="cervezas">
+  <svg class="botanical-ornament" style="top:2rem;right:0.5rem;width:160px;opacity:0.05;" viewBox="0 0 160 300" fill="none" aria-hidden="true">
+    <line x1="80" y1="300" x2="80" y2="0" stroke="#3a6b3a" stroke-width="2"/>
+    <ellipse cx="80" cy="240" rx="38" ry="20" fill="#3a6b3a" transform="rotate(-28 80 240)"/>
+    <ellipse cx="80" cy="190" rx="32" ry="16" fill="#3a6b3a" transform="rotate(22 80 190)"/>
+    <ellipse cx="80" cy="140" rx="26" ry="13" fill="#3a6b3a" transform="rotate(-18 80 140)"/>
+    <ellipse cx="80" cy="95"  rx="20" ry="10" fill="#3a6b3a" transform="rotate(16 80 95)"/>
+    <ellipse cx="80" cy="50"  rx="16" ry="22" fill="#3a6b3a"/>
+  </svg>
+
+  <div class="cervezas-header reveal">
+    <span class="section-label">Línea Principal</span>
+    <h2 class="section-title">Nuestras <em>Cervezas</em></h2>
+    <p>Cada cerveza es una declaración de principios. Ingredientes de calidad, técnica precisa, y el carácter inconfundible de Jardín.</p>
+  </div>
+
+  <div class="cervezas-grid">
+    <div class="cerveza-card destacada reveal">
+      <div class="cerveza-tipo">Märzen / Lager Ámbar</div>
+      <h3 class="cerveza-nombre">Märzen</h3>
+      <p class="cerveza-descripcion">Una lager ámbar de carácter maltoso, con notas de pan tostado y un amargor elegantemente equilibrado. Tradición bávara en corazón mexicano.</p>
+      <div class="cerveza-premio"><span class="medalla oro"></span>Oro — Aro Rojo Profesional 2025</div>
+    </div>
+
+    <div class="cerveza-card destacada reveal">
+      <div class="cerveza-tipo">Imperial Stout</div>
+      <h3 class="cerveza-nombre">Imperial Stout</h3>
+      <p class="cerveza-descripcion">Con lactosa y avena. Oscura, densa, opulenta. Notas de café, chocolate amargo y una textura sedosa que abraza el paladar.</p>
+      <div class="cerveza-premio"><span class="medalla plata"></span>Plata — Copa Chilanga 2023</div>
+    </div>
+
+    <div class="cerveza-card reveal">
+      <div class="cerveza-tipo">IPA — West meets East Coast</div>
+      <h3 class="cerveza-nombre">IPA Los Compas</h3>
+      <p class="cerveza-descripcion">El balance perfecto entre la claridad crujiente del West Coast y la suavidad jugosa del East Coast. La IPA favorita de la comunidad Jardín.</p>
+    </div>
+
+    <div class="cerveza-card reveal">
+      <div class="cerveza-tipo">Lager Mexicana</div>
+      <h3 class="cerveza-nombre">MX Lager</h3>
+      <p class="cerveza-descripcion">La mejor lager que existe. Refrescante, limpia, con un carácter genuinamente mexicano. Simple en apariencia, perfecta en ejecución.</p>
+      <div class="cerveza-premio"><span class="medalla pronto"></span>Próxima ganadora de concursos</div>
+    </div>
+  </div>
+
+  <div class="temporada-titulo reveal"><span>También de temporada</span></div>
+  <div class="temporada-grid reveal">
+    <span class="cerveza-temporada-pill">Schwarzbier</span>
+    <span class="cerveza-temporada-pill">Tropical Stout</span>
+    <span class="cerveza-temporada-pill">Saison</span>
+    <span class="cerveza-temporada-pill">Y más por venir…</span>
+  </div>
+</section>
+
+<!-- HERMANAS -->
+<section id="hermanas">
+  <div class="hermanas-intro reveal">
+    <span class="section-label">El Colectivo</span>
+    <h2 class="section-title">Cervecerías <em>Hermanas</em></h2>
+    <p>Cervecería Jardín nace de la unión de dos proyectos con alma propia. Bravada y Mantide son las raíces de este colectivo — cada una con su identidad, juntas detrás de cada colaboración Jardín.</p>
+  </div>
+
+  <div class="hermanas-grid">
+    <div class="hermana-card reveal">
+      <div class="hermana-logo-area"><div class="logo-bravada">Bravada</div></div>
+      <span class="hermana-subtitulo">Fábrica de Cerveza</span>
+      <p class="hermana-descripcion">Carácter y audacia en cada lote. Bravada es la expresión de la cerveza sin concesiones — brava por nombre, bravísima por naturaleza.</p>
+      <div class="hermana-animal">Bisonte — fuerza y terruño</div>
+    </div>
+
+    <div class="hermana-card reveal">
+      <div class="hermana-logo-area"><div class="logo-mantide">Mantide</div></div>
+      <span class="hermana-subtitulo">Cervecería</span>
+      <p class="hermana-descripcion">Precisión, paciencia e instinto. Mantide elabora cada cerveza con la serenidad y el filo de su animal totémico — siempre calculada, siempre sorprendente.</p>
+      <div class="hermana-animal">Mantis — precisión y naturaleza</div>
+    </div>
+  </div>
+</section>
+
+<!-- PUNTO DE VENTA -->
+<section id="punto-de-venta">
+  <div class="pdv-container">
+    <!-- Izquierda -->
+    <div class="reveal">
+      <div class="pdv-info-header">
+        <span class="section-label">Encuéntranos</span>
+        <span class="pdv-sucursal-tag">Sucursal 1 — Abierta</span>
+        <h2>Nuestro <em>Punto de Venta</em></h2>
+      </div>
+
+      <div class="pdv-dato">
+        <span class="pdv-dato-label">Dirección</span>
+        <p class="pdv-dato-valor">Ciudad de México, CDMX</p>
+        <a href="https://maps.app.goo.gl/uWUdZYYPfuv52fAF6" target="_blank" rel="noopener" class="pdv-maps-link">
+          Ver en Google Maps →
+        </a>
+      </div>
+
+      <div class="pdv-horarios">
+        <div class="pdv-horarios-titulo">Horarios de atención</div>
+        <div class="pdv-horario-row cerrado">
+          <span class="dia">Lunes</span>
+          <span class="hora">Cerrado</span>
+        </div>
+        <div class="pdv-horario-row">
+          <span class="dia">Martes</span>
+          <span class="hora">14:00 — 22:00</span>
+        </div>
+        <div class="pdv-horario-row">
+          <span class="dia">Miércoles</span>
+          <span class="hora">14:00 — 22:00</span>
+        </div>
+        <div class="pdv-horario-row">
+          <span class="dia">Jueves</span>
+          <span class="hora">14:00 — 1:00</span>
+        </div>
+        <div class="pdv-horario-row">
+          <span class="dia">Viernes</span>
+          <span class="hora">14:00 — 2:00</span>
+        </div>
+        <div class="pdv-horario-row">
+          <span class="dia">Sábado</span>
+          <span class="hora">12:00 — 2:00</span>
+        </div>
+        <div class="pdv-horario-row">
+          <span class="dia">Domingo</span>
+          <span class="hora">12:00 — 20:00</span>
+        </div>
+        <div class="pdv-nota-barra">* La barra cierra una hora antes del cierre del lugar</div>
+      </div>
+    </div>
+
+    <!-- Derecha -->
+    <div class="pdv-right reveal">
+      <div class="pdv-mapa-frame">
+        <iframe
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=Cerveceria+Jardin+CDMX"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa Cervecería Jardín"
+          aria-label="Ubicación Cervecería Jardín en Google Maps">
+        </iframe>
+      </div>
+
+      <div class="pdv-teaser">
+        <span class="pdv-teaser-icon">🌿</span>
+        <h3>Algo increíble está por pasar</h3>
+        <p>Una segunda sucursal está en camino.<br>Pronto habrá más espacio para la comunidad Jardín.</p>
+        <span class="pdv-teaser-badge">Espera noticias</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <svg class="botanical-ornament" style="bottom:1rem;left:1.5rem;width:110px;opacity:0.11;transform:rotate(-8deg);" viewBox="0 0 120 200" fill="none" aria-hidden="true">
+    <line x1="60" y1="200" x2="60" y2="75" stroke="#3a6b3a" stroke-width="1.5"/>
+    <ellipse cx="60" cy="155" rx="28" ry="14" fill="#72aa5c" transform="rotate(-22 60 155)"/>
+    <ellipse cx="60" cy="118" rx="22" ry="11" fill="#a8c98a" transform="rotate(18 60 118)"/>
+    <ellipse cx="60" cy="38" rx="22" ry="30" fill="#e8a090"/>
+    <ellipse cx="60" cy="38" rx="22" ry="30" fill="#e8c4b8" transform="rotate(60 60 38)"/>
+    <ellipse cx="60" cy="38" rx="22" ry="30" fill="#e8a090" transform="rotate(120 60 38)"/>
+    <circle cx="60" cy="38" r="9" fill="#f5dfd8"/>
+  </svg>
+  <svg class="botanical-ornament" style="top:1.5rem;right:1.5rem;width:95px;opacity:0.1;transform:rotate(12deg) scaleX(-1);" viewBox="0 0 120 200" fill="none" aria-hidden="true">
+    <line x1="60" y1="200" x2="60" y2="75" stroke="#3a6b3a" stroke-width="1.5"/>
+    <ellipse cx="60" cy="155" rx="25" ry="12" fill="#72aa5c" transform="rotate(-18 60 155)"/>
+    <ellipse cx="60" cy="115" rx="20" ry="10" fill="#a8c98a" transform="rotate(20 60 115)"/>
+    <ellipse cx="60" cy="38" rx="20" ry="28" fill="#c4a07c"/>
+    <ellipse cx="60" cy="38" rx="20" ry="28" fill="#e8c4b8" transform="rotate(72 60 38)"/>
+    <ellipse cx="60" cy="38" rx="20" ry="28" fill="#c4a07c" transform="rotate(144 60 38)"/>
+    <circle cx="60" cy="38" r="8" fill="#f5efe3"/>
+  </svg>
+
+  <div class="contacto-container reveal">
+    <span class="section-label">Escríbenos</span>
+    <h2 class="contacto-grande">¿Tienes algo que <em>decirnos</em>?</h2>
+    <p class="contacto-bajada">Para pedidos, colaboraciones, eventos o simplemente para hablar de cerveza — aquí estamos.</p>
+    <a href="mailto:info@cerveceriajardin.com" class="contacto-email">info@cerveceriajardin.com</a>
+    <div class="linea-floral"><span class="flor-icon">✿</span></div>
+    <div class="redes">
+      <a href="https://instagram.com/cerveceria_jardin" class="red-link" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/share/17a7vJoWo6/?mibextid=wwXIfr" class="red-link" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Cervecería Jardín</span>
+  <p class="footer-text">© 2025 Cervecería Jardín — Un colectivo de Bravada &amp; Mantide — CDMX, México</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.padding = window.scrollY > 50 ? '0.7rem 4rem' : '1.1rem 4rem';
+  }, { passive: true });
+</script>
+</body>
+</html>
