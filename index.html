@@ -415,18 +415,48 @@
     padding: 2.8rem 2.5rem;
     background: var(--blanco);
     border: 1px solid var(--borde);
-    position: relative; transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
   }
+
+  .hermana-card::before {
+    content: '';
+    position: absolute;
+    inset: -10%;
+    background-size: 85%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.06;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    filter: grayscale(100%);
+  }
+  .hermana-card.card-bravada::before {
+    background-image: url('src/logo_bravada.png');
+  }
+
+  .hermana-card.card-mantide::before {
+    background-image: url('src/logo_mantide.png');
+  }
+
+  .hermana-card:hover::before { opacity: 0.12; }
+
+  .hermana-card > * { position: relative; z-index: 1; }
+
   .hermana-card:hover {
     border-color: var(--borde-fuerte);
     box-shadow: 0 10px 35px rgba(58,107,58,0.07);
     transform: translateY(-4px);
   }
   .hermana-card::after {
-    content: ''; position: absolute;
+    content: '';
+    position: absolute;
     bottom: 0; left: 2rem; right: 2rem; height: 1px;
     background: linear-gradient(90deg, transparent, var(--verde-menta), transparent);
-    opacity: 0; transition: opacity 0.35s;
+    opacity: 0;
+    transition: opacity 0.35s;
+    z-index: 2;
   }
   .hermana-card:hover::after { opacity: 1; }
 
@@ -869,7 +899,7 @@
     <div class="hermana-card reveal">
       <div class="hermana-logo-area"><div class="logo-mantide">Mantide</div></div>
       <span class="hermana-subtitulo">Cervecería</span>
-      <p class="hermana-descripcion">Precisión, paciencia e instinto. Mantide elabora cada cerveza con la serenidad y el filo de su animal totémico — siempre calculada, siempre sorprendente.</p>
+      <p class="hermana-descripcion">Precisión, paciencia e inst into. Mantide elabora cada cerveza con la serenidad y el filo de su animal totémico — siempre calculada, siempre sorprendente.</p>
       <div class="hermana-animal">Mantis — precisión y naturaleza</div>
     </div>
   </div>
@@ -943,7 +973,8 @@
       <div class="pdv-teaser">
         <span class="pdv-teaser-icon">🌿</span>
         <h3>Algo increíble está por pasar</h3>
-        <p>Una segunda sucursal está en camino.<br>Pronto habrá más espacio para la comunidad Jardín.</p>
+        <p>Una segunda sucursal está en camino!<br>Pronto habrá más espacio para la comunidad Jardín.</p>
+        <p>Si ves esto, manda screenshot al instagram y obten una cerveza gratis en tu siguiente visita.</p>
         <span class="pdv-teaser-badge">Espera noticias</span>
       </div>
     </div>
